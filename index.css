@@ -1,0 +1,38 @@
+body{
+  background-color: #739ee2;
+}
+
+div#head {
+  text-align: center;
+  font-size:50px;
+  font-style: bold;
+}
+
+div#toolbar {
+  text-align: center;
+  background-color: white;
+  height:40px;
+  font-size:35px;
+}
+
+span#t {
+  right:33%;
+  position: relative;
+}
+
+span#c {
+  align-self: center;
+  position: relative;
+}
+
+span#s{
+  left:33%;
+  position: relative;
+}
+
+div#add{
+  /*text-align:center;*/
+  position:absolute;
+  top:50%;
+  left:47%;
+}
