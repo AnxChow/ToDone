@@ -1,1 +1,156 @@
-!function(n){var a={en:{day:"day",hour:"hour",minute:"minute",second:"second",days:"days",hours:"hours",minutes:"minutes",seconds:"seconds"}};n.fn.durationPicker=function(s){var e={lang:"en",formatter:function(n){return n},showSeconds:!1},d=n.extend({},e,s);this.each(function(s,e){function o(n,a){return'<div class="bdp-block '+(a?"hidden":"")+'"><span id="bdp-'+n+'"></span><br><span class="bdp-label" id="'+n+'_label"></span></div>'}function t(){var n=y+60*m+60*f*60+24*b*60*60;e.val(n),e.change()}function i(n,s,e){var o=1===s?e:e+"s";h.find(n).text(a[d.lang][o])}function r(n,a){h.find(n).text(d.formatter(a))}function l(){r("#bdp-days",b),r("#bdp-hours",f),r("#bdp-minutes",m),r("#bdp-seconds",y),i("#days_label",b,"day"),i("#hours_label",f,"hour"),i("#minutes_label",m,"minute"),i("#seconds_label",y,"second")}function u(){I||(g.days.val(b),g.hours.val(f),g.minutes.val(m),g.seconds.val(y))}function c(){""===e.val()&&e.val(0);var n=parseInt(e.val(),10);y=n%60,n=Math.floor(n/60),m=n%60,n=Math.floor(n/60),f=n%24,b=Math.floor(n/24),l(),u()}function p(){b=parseInt(g.days.val(),10)||0,f=parseInt(g.hours.val(),10)||0,m=parseInt(g.minutes.val(),10)||0,y=parseInt(g.seconds.val(),10)||0,t(),l()}function v(s,e,o){var t=n('<input class="form-control input-sm" type="number" min="0" value="0">').change(p);o&&t.attr("max",o),g[s]=t;var i=n("<div> "+a[d.lang][s]+"</div>");return e&&i.addClass("hidden"),i.prepend(t)}if(e=n(e),"1"!==e.data("bdp")){var h=n('<div class="bdp-input">'+o("days")+o("hours")+o("minutes")+o("seconds",!d.showSeconds)+"</div>");e.after(h).hide().data("bdp","1");var b=0,f=0,m=0,y=0,g=[],I=!1;if((e.hasClass("disabled")||"disabled"===e.attr("disabled"))&&(I=!0,h.addClass("disabled")),!I){var _=n('<div class="bdp-popover"></div>');v("days",!1).appendTo(_),v("hours",!1,23).appendTo(_),v("minutes",!1,59).appendTo(_),v("seconds",!d.showSeconds,59).appendTo(_),h.popover({placement:"bottom",trigger:"click",html:!0,content:_})}c(),e.change(c)}})}}(jQuery);
+(function ($) {
+
+    var langs = {
+        en: {
+            day: 'day',
+            hour: 'hour',
+            minute: 'minute',
+            second: 'second',
+            days: 'days',
+            hours: 'hours',
+            minutes: 'minutes',
+            seconds: 'seconds'
+        }
+    };
+
+    $.fn.durationPicker = function (options) {
+
+        var defaults = {
+            lang: 'en',
+            formatter: function (s) {
+                return s;
+            },
+            showSeconds: false
+        };
+        var settings = $.extend( {}, defaults, options );
+
+        this.each(function (i, mainInput) {
+
+            mainInput = $(mainInput);
+
+            if (mainInput.data('bdp') === '1')
+                return;
+
+            function buildDisplayBlock(id, hidden) {
+                return '<div class="bdp-block '+ (hidden ? 'hidden' : '') + '">' +
+                            '<span id="bdp-'+ id +'"></span><br>' +
+                            '<span class="bdp-label" id="' + id + '_label"></span>' +
+                        '</div>';
+            }
+
+            var mainInputReplacer = $('<div class="bdp-input">' +
+                buildDisplayBlock('days') +
+                buildDisplayBlock('hours') +
+                buildDisplayBlock('minutes') +
+                buildDisplayBlock('seconds', !settings.showSeconds) +
+            '</div>');
+
+            mainInput.after(mainInputReplacer).hide().data('bdp', '1');
+
+            var days = 0,
+                hours = 0,
+                minutes = 0,
+                seconds = 0;
+
+            var inputs = [];
+
+            var disabled = false;
+            if (mainInput.hasClass('disabled') || mainInput.attr('disabled') === 'disabled') {
+                disabled = true;
+                mainInputReplacer.addClass('disabled');
+            }
+
+            function updateMainInput() {
+                var total = seconds + minutes * 60 + hours * 60 * 60 + days * 24 * 60 * 60;
+                mainInput.val(total);
+                mainInput.change();
+            }
+
+            function updateWordLabel(selector, value, label) {
+                var text = value === 1 ? label : label + 's';
+                mainInputReplacer.find(selector).text(langs[settings.lang][text]);
+            }
+
+            function updateValueLabel(selector, value) {
+                mainInputReplacer.find(selector).text(settings.formatter(value));
+            }
+
+            function updateMainInputReplacer() {
+                updateValueLabel('#bdp-days', days);
+                updateValueLabel('#bdp-hours', hours);
+                updateValueLabel('#bdp-minutes', minutes);
+                updateValueLabel('#bdp-seconds', seconds);
+
+                updateWordLabel('#days_label', days, 'day');
+                updateWordLabel('#hours_label', hours, 'hour');
+                updateWordLabel('#minutes_label', minutes, 'minute');
+                updateWordLabel('#seconds_label', seconds, 'second');
+            }
+
+            function updatePicker() {
+                if (disabled)
+                    return;
+                inputs['days'].val(days);
+                inputs['hours'].val(hours);
+                inputs['minutes'].val(minutes);
+                inputs['seconds'].val(seconds);
+            }
+
+            function init() {
+                if (mainInput.val() === '')
+                    mainInput.val(0);
+                var total = parseInt(mainInput.val(), 10);
+                seconds = total % 60;
+                total = Math.floor(total/60);
+                minutes = total % 60;
+                total = Math.floor(total/60);
+                hours = total % 24;
+                days = Math.floor(total/24);
+                updateMainInputReplacer();
+                updatePicker();
+            }
+
+            function durationPickerChanged() {
+                days =    parseInt(inputs['days'].val(), 10)    || 0;
+                hours =   parseInt(inputs['hours'].val(), 10)   || 0;
+                minutes = parseInt(inputs['minutes'].val(), 10) || 0;
+                seconds = parseInt(inputs['seconds'].val(), 10) || 0;
+                updateMainInput();
+                updateMainInputReplacer();
+            }
+
+            function buildNumericInput(label, hidden, max) {
+                var input = $('<input class="form-control input-sm" type="number" min="0" value="0">')
+                    .change(durationPickerChanged);
+                if (max) {
+                    input.attr('max', max);
+                }
+                inputs[label] = input;
+                var ctrl = $('<div> ' + langs[settings.lang][label] + '</div>');
+                if (hidden) {
+                    ctrl.addClass('hidden');
+                }
+                return ctrl.prepend(input);
+            }
+
+            if (!disabled) {
+                var picker = $('<div class="bdp-popover"></div>');
+                buildNumericInput('days', false).appendTo(picker);
+                buildNumericInput('hours', false, 23).appendTo(picker);
+                buildNumericInput('minutes', false, 59).appendTo(picker);
+                buildNumericInput('seconds', !settings.showSeconds, 59).appendTo(picker);
+
+                mainInputReplacer.popover({
+                    placement: 'bottom',
+                    trigger: 'click',
+                    html: true,
+                    content: picker
+                });
+            }
+            init();
+            mainInput.change(init);
+        });
+
+    };
+
+}(jQuery));
