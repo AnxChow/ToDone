@@ -1,9 +1,25 @@
 div#title{
-  background-color:white;
+  /*background-color:white;*/
   font-size:20px;
+  color: white;
 }
 
 h1#titleh1{
-  padding:0px;
+  padding-top:5px;
   margin:0px;
+}
+
+.navelements { /* Not working atm */
+  color: lightgrey;
+  /*font-size: 1.25em;*/
+}
+
+#bodycontainer {
+  padding-top: 3em;
+}
+
+#addtask {
+  height: 3em;
+  font-weight: bold;
+  /*font-size: 1.25em;*/
 }

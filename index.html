@@ -15,6 +15,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
 
+    <!--duration picker-->
+    <link rel="stylesheet" href="css/bootstrap-duration-picker.css">
+
+    <!-- Selectize for tags -->
+    <link rel="stylesheet" type="text/css" href="css/selectize.css" />
+
     <!-- Custom CSS -->
     <style>
     body {
@@ -35,8 +41,9 @@
 <body>
 
     <!-- Navigation -->
+    <!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div id="title" class="text-center"><h1 id="titleh1">ToDone</h1></div>
+      <div id="title" class="text-center"><h1 id="titleh1">ToDone.</h1></div>
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -46,19 +53,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                
                 <!-- <a class="navbar-brand" href="#">Start Bootstrap</a> -->
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <!--<ul class="nav navbar-nav">-->
+                    <ul class="nav nav-justified">
                     <li>
-                        <a href="#">Tasks</a>
+                        <a id="tasks" class="navelements" href="#">Tasks</a>
                     </li>
                     <li>
-                        <a href="#">Completed</a>
+                        <a id="completed" class="navelements" href="#">Completed</a>
                     </li>
                     <li>
-                        <a href="#">Summary</a>
+                        <a id="summary" class="navelements" href="#">Productivity</a>
                     </li>
                 </ul>
             </div>
@@ -68,9 +77,56 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
+    <div id="bodycontainer" class="container">
+        
+        <button type="button" id="addtask" class="btn-block" data-toggle="modal" data-target="#myModal">Add Task</button>
 
-        <div class="row">
+                <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add a task!</h4>
+                </div>
+                <div class="modal-body">
+                    <!--<p>Some text in the modal.</p>-->
+                    <form id="addtaskform">
+                        <div class="form-group">
+                            <label for="tasklabel">Task Name</label>
+                            <input type="text" class="form-control" id="tasklabel" placeholder="Eg. EECS Homework, Apply for job, etc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="taskdescription">Notes</label>
+                            <!--<input type="text" class="form-control" id="taskdescription" placeholder="Task description">-->
+                            <textarea class="form-control" rows="3" id="notes-text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="expectedtime">Expected Time Required</label>
+                            <!--<input type="text" class="form-control" id="taskdescription" placeholder="Task description">-->
+                            <input type="text" class="form-control" id="duration">
+                        </div>
+                        <div class="form-group">
+                            <label for="tags">Tags</label>
+                            <input type="text" class="form-control" id="tags" placeholder="Eg. Homework, School, etc.">
+                        </div>
+                       
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button id="addbutton" type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+                </div>
+                </div>
+
+            </div>
+
+            
+        </div>
+
+        <!--<div class="row">
             <div class="col-lg-12 text-center">
                 <h1>A Bootstrap Starter Template</h1>
                 <p class="lead">Complete with pre-defined file paths that you won't have to change!!</p>
@@ -79,7 +135,7 @@
                     <li>jQuery v1.11.1</li>
                 </ul>
             </div>
-        </div>
+        </div>-->
         <!-- /.row -->
 
     </div>
@@ -90,6 +146,15 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!--Duration picker for expected time field-->
+    <script src="js/bootstrap-duration-picker.js"></script>
+
+    <!-- Selectize for tags -->
+    <script type="text/javascript" src="js/selectize.js"></script>
+
+    <!--index.js file-->
+    <script src="js/index.js"></script>
 
 </body>
 
