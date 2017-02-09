@@ -1,8 +1,4 @@
-var createtask = function (){
-    var task = $('addtaskform').serializeArray();
-    console.log("executed");
-}
-
+var currtasks = [];
 
 window.onload = function() {
     $('#duration').durationPicker(); //durationpicker for expected time required
@@ -21,23 +17,14 @@ window.onload = function() {
         var task = {
             "name": $("#tasklabel").val(),
             "notes": $("#notes-text").val(),
-            "time": $("#expectedtime").val(),
+            "time": [document.getElementById("bdp-days").innerText,document.getElementById("bdp-hours").innerText,document.getElementById("bdp-minutes").innerText],
             "tags": $("#tags").val()
         }
         document.getElementById('addtaskform').reset(); // resets fields
-        console.log(task);
+        
+        currtasks.push(task); //puts task data in the array
+        console.log(currtasks);
     });
-
-
-    // $('#addbutton').click(function(e){
-    //     var task = $('#addtaskform').serializeArray();
-    //     console.log(task);
-    // });
-    // $('#addbutton').click(function(){
-    //     var task = $('addtaskform').serializeArray();
-    //     console.log(task);
-    //     $('addtaskform').reset();
-    // })
 
 }
 
