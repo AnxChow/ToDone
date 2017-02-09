@@ -23,3 +23,8 @@ h1#titleh1{
   font-weight: bold;
   /*font-size: 1.25em;*/
 }
+
+#taskbody {
+  margin:0px;
+  padding:0px;
+}

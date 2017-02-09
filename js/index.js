@@ -21,10 +21,16 @@ window.onload = function() {
             "tags": $("#tags").val()
         }
         document.getElementById('addtaskform').reset(); // resets fields
-        
+
         currtasks.push(task); //puts task data in the array
         console.log(currtasks);
+
+        var divi=document.createElement("div");
+        divi.className='well col-block';
+        var node=document.createTextNode("Task Time tag");
+        divi.appendChild(node);
+        var taskbody=document.getElementById('taskbody');
+        taskbody.appendChild(divi);
     });
 
 }
-
