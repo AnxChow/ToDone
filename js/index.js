@@ -29,9 +29,11 @@ window.onload = function() {
 
         var divi=document.createElement("div");
         divi.className='well col-block';
-        var str=currtasks[tasknum].name + 'Expected Time: ' + currtasks[tasknum].time + 'Tag: ' +currtasks[tasknum].tags;
-        var node=document.createTextNode(str);
-        divi.appendChild(node);
+        //var str=currtasks[tasknum].name + 'Expected Time: ' + currtasks[tasknum].time + 'Tag: ' +currtasks[tasknum].tags;
+        var str='<div class="row"><div class="col-md-4">'+currtasks[tasknum].name+'</div><div class="col-md-3">Expected Time: ' +currtasks[tasknum].time+'</div><div class="col-md-3">Tag: '+currtasks[tasknum].tags+'</div></div>';
+        //var node=document.createTextNode(str);
+        //divi.appendChild(node);
+        divi.innerHTML+=str;
         var taskbody=document.getElementById('taskbody');
         taskbody.appendChild(divi);
         tasknum++;
