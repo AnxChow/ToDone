@@ -28,3 +28,8 @@ h1#titleh1{
   margin:0px;
   padding:0px;
 }
+
+#start{
+  /*position: relative;*/
+  /*float:right;*/
+}
