@@ -29,8 +29,8 @@ h1#titleh1{
   padding:0px;
 }
 
-#taskbody h3,h5 {
-  /*margin:0;*/
+#taskbody h3 {
+  margin:0;
   /*vertical-align: middle;*/
 }
 
