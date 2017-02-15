@@ -12,8 +12,10 @@
     <title>ToDone.</title>
 
     <!-- Bootstrap Core CSS -->
+
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
+
 
     <!--duration picker-->
     <link rel="stylesheet" href="css/bootstrap-duration-picker.css">
@@ -84,7 +86,7 @@
 
         <!--<h2 id="notask" class="">Nothing to do!</h2> -->
 
-        <h2 id="inprogress" class="hidden">In Progress<hr></h2> 
+        <h2 id="inprogress" class="hidden">In Progress<hr></h2>
 
         <h2 id="notstarted" class="hidden">Not Started<hr></h2>
 
@@ -144,6 +146,37 @@
 
 
         </div>
+
+        <div id="focusModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Task Started</h4>
+                </div>
+                <div class="modal-body">
+                  <h2 class="text-center"> Get it done!</h2>
+                <!-- <div id="getitdone"> -->
+                  <h4 id="timer"> Time: 00:01:67</h4>
+                <!-- </div> -->
+                  <hr>
+                  <h4>Task name</h4>
+                  <h4>Tags</h4>
+                  <br>
+                  <br>
+                  <div class="text-center">
+                      <button class="btn btn-default btn-lg"> Pause Task</button>
+                      <button class="btn btn-default btn-lg">Finish Task</button>
+                      <br>
+                      <br>
+                      <button class="btn btn-default">minimize</button>
+                  </div>
+
+                    <!--<p>Some text in the modal.</p>-->
+
+                </div>
 
         <!--<div class="row">
             <div class="col-lg-12 text-center">
