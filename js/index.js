@@ -17,7 +17,7 @@ function headingCheck() {
 }
 
 window.onload = function() {
-    
+
     $('#duration').durationPicker(); //durationpicker for expected time required
     $('#tags').selectize({ // selectize for tags
     delimiter: ',',
@@ -33,10 +33,26 @@ window.onload = function() {
 
     $('#addbutton').click(function(e){
     // $("#addtaskform").on('submit', function() {
+    //Validate form
+        var TaskVal=document.forms["addtaskform"]["tasklabel"].value;
+        var TimeVal=[document.getElementById("bdp-days").innerText,document.getElementById("bdp-hours").innerText,document.getElementById("bdp-minutes").innerText];
+        var TagVal=document.forms["addtaskform"]["tags"].value;
+        if(TaskVal==""){
+          alert("Please enter a task");
+          return false;
+        }
+        if(TagVal==""){
+          alert("Please enter at least one tag");
+          return false;
+        }
+        if(TimeVal[0]=="0" && TimeVal[1]=="0" && TimeVal[2]=="0"){
+          alert("Please set expected time");
+          return false;
+        }
         var task = {
             "name": $("#tasklabel").val(),
             "notes": $("#notes-text").val(),
-            "time": [document.getElementById("bdp-days").innerText,document.getElementById("bdp-hours").innerText,document.getElementById("bdp-minutes").innerText],
+            "time": TimeVal,
             "tags": $("#tags").val()
         }
 
