@@ -82,11 +82,13 @@
         <button type="button" id="addtask" class="btn-block" data-toggle="modal" data-target="#myModal">Add Task</button>
         <br>
 
+        <!--<h2 id="notask" class="">Nothing to do!</h2> -->
+
         <h2 id="inprogress" class="hidden">In Progress<hr></h2> 
 
         <h2 id="notstarted" class="hidden">Not Started<hr></h2>
 
-          <div id="taskbody" class="container div-block">
+          <div id="taskbody">
             <!-- <div class="row"> -->
               <!-- <div class="col-md-4"><h3>Task</h3></div>
               <div class="col-md-3">Expected Time: </div>
@@ -110,7 +112,7 @@
                     <form id="addtaskform">
                         <div class="form-group">
                             <label for="tasklabel">Task Name</label>
-                            <input type="text" class="form-control" id="tasklabel" placeholder="Eg. EECS Homework, Apply for job, etc.">
+                            <input type="text" class="form-control" id="tasklabel" placeholder="Eg. EECS Homework, Apply for job, etc." required>
                         </div>
                         <div class="form-group">
                             <label for="taskdescription">Notes</label>
@@ -120,18 +122,18 @@
                         <div class="form-group">
                             <label for="expectedtime">Expected Time Required</label>
                             <!--<input type="text" class="form-control" id="taskdescription" placeholder="Task description">-->
-                            <input type="text" class="form-control" id="duration">
+                            <input type="text" class="form-control" id="duration" required>
                         </div>
                         <div class="form-group">
                             <label for="tags">Tags</label>
-                            <input type="text" class="form-control" id="tags" placeholder="Eg. Homework, School, etc.">
+                            <input type="text" class="form-control" id="tags" placeholder="Eg. Homework, School, etc." required>
                         </div>
 
                     </form>
                 </div>
 
                 <div class="modal-footer">
-                    <button id="addbutton" type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+                    <button id="addbutton" type="submit" class="btn btn-default" data-dismiss="modal">Add</button>
                 </div>
                 </div>
 

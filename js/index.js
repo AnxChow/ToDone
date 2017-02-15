@@ -17,6 +17,7 @@ function headingCheck() {
 }
 
 window.onload = function() {
+    
     $('#duration').durationPicker(); //durationpicker for expected time required
     $('#tags').selectize({ // selectize for tags
     delimiter: ',',
@@ -29,7 +30,9 @@ window.onload = function() {
         }
     });
 
+
     $('#addbutton').click(function(e){
+    // $("#addtaskform").on('submit', function() {
         var task = {
             "name": $("#tasklabel").val(),
             "notes": $("#notes-text").val(),
@@ -55,7 +58,7 @@ window.onload = function() {
         // }
         //var str=currtasks[tasknum].name + 'Expected Time: ' + currtasks[tasknum].time + 'Tag: ' +currtasks[tasknum].tags;
         // var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button class="btn-block">Start Task</div></div>';
-        var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +currtasks[tasknum].time+'</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button class="btn-block">Start Task</div></div>'
+        var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +currtasks[tasknum].time+'</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton" class="btn btn-primary">Start</button><button id="trashbutton" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>'
         //var node=document.createTextNode(str);
         //divi.appendChild(node);
         divi.innerHTML+=str;

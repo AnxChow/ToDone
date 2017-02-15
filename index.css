@@ -29,7 +29,17 @@ h1#titleh1{
   padding:0px;
 }
 
-#start{
-  /*position: relative;*/
-  /*float:right;*/
+#taskbody h3,h5 {
+  /*margin:0;*/
+  /*vertical-align: middle;*/
 }
+
+#startbutton {
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+/*#trashbutton, #startbutton {
+  float: right;
+  text-align: right;
+}*/
