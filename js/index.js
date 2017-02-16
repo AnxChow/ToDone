@@ -30,6 +30,12 @@ window.onload = function() {
         }
     });
 
+    function getTimeStamp() {
+       var now = new Date();
+       var hold='Time Started: '+(now.getHours() + ':'+ ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now.getSeconds()) : (now.getSeconds())));
+       document.getElementById('timer').innerHTML = hold;
+     }
+
 
     $('#addbutton').click(function(e){
     // $("#addtaskform").on('submit', function() {
@@ -73,7 +79,7 @@ window.onload = function() {
         //   taskbody.appendChild(head);
         // }
         //var str=currtasks[tasknum].name + 'Expected Time: ' + currtasks[tasknum].time + 'Tag: ' +currtasks[tasknum].tags;
-        var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton" class="btn btn-primary" data-toggle="modal" data-target="#focusModal">Start</button><button id="trashbutton" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>';
+        var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton" class="btn btn-primary"  data-toggle="modal" data-target="#focusModal">Start</button><button id="trashbutton" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>';
         // var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +currtasks[tasknum].time+'</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton" class="btn btn-primary">Start</button><button id="trashbutton" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>'
         //var node=document.createTextNode(str);
         //divi.appendChild(node);
@@ -82,6 +88,7 @@ window.onload = function() {
         taskbody.appendChild(divi);
         tasknum++;
         document.getElementById('addtaskform').reset(); // resets fields
+        document.getElementById("startbutton").addEventListener("click", getTimeStamp);
     });
 
 }
