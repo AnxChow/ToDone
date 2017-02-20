@@ -2,6 +2,7 @@ var currtasks = [];
 var startedtasks = [];
 var completedtasks = [];
 var tasknum=0;
+var divholder
 
 function headingCheck() {
     if (currtasks.length !== 0 && $("#notstarted").hasClass("hidden")) {
@@ -82,7 +83,7 @@ window.onload = function() {
         // }
         //var str=currtasks[tasknum].name + 'Expected Time: ' + currtasks[tasknum].time + 'Tag: ' +currtasks[tasknum].tags;
         // var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button class="btn-block">Start Task</div></div>';
-        var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton" class="startbutton btn btn-primary" data-toggle="modal" data-target="#focusModal">Start</button><button id="trashbutton-'+tasknum+'" class="trashbutton btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>'
+        var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton-'+tasknum+'" class="startbutton btn btn-primary" data-toggle="modal" data-target="#focusModal">Start</button><button id="trashbutton-'+tasknum+'" class="trashbutton btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>'
         //var node=document.createTextNode(str);
         //divi.appendChild(node);
         divi.innerHTML+=str;
@@ -90,7 +91,11 @@ window.onload = function() {
         taskbody.appendChild(divi);
         tasknum++;
         document.getElementById('addtaskform').reset(); // resets fields
-        document.getElementById("startbutton").addEventListener("click", getTimeStamp);
+        
+        $('#finishbutton').click(function(){
+            //var nukeitem = divholder.children()[0].children[3].children[1].id;
+            divholder.remove();
+        })
 
         for (var i = 0; i <= tasknum; i++) {
         console.log(tasknum, i);
@@ -104,6 +109,12 @@ window.onload = function() {
                 console.log(currtasks[i]);
                 //tasknum--;
                 headingCheck();
+            });
+            // console.log($("#startbutton-"+(i-1)));
+            $("#startbutton-"+(i-1)).click( function(){
+                getTimeStamp();
+                divholder = $(this).parent().parent().parent();
+                console.log(divholder);
             });
         }
 
