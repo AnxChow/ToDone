@@ -86,7 +86,7 @@ window.onload = function() {
         //var str=currtasks[tasknum].name + 'Expected Time: ' + currtasks[tasknum].time + 'Tag: ' +currtasks[tasknum].tags;
 
         // var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button class="btn-block">Start Task</div></div>';
-        var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton" class="startbutton btn btn-primary" data-toggle="modal" data-target="#focusModal">Start</button><button id="trashbutton-'+tasknum+'" class="trashbutton btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>'
+        var str='<div class="row'+tasknum+'"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton" class="startbutton btn btn-primary" data-toggle="modal" data-target="#focusModal">Start</button><button id="trashbutton-'+tasknum+'" class="trashbutton btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>'
 
         //var node=document.createTextNode(str);
         //divi.appendChild(node);
@@ -96,6 +96,10 @@ window.onload = function() {
         tasknum++;
         document.getElementById('addtaskform').reset(); // resets fields
         document.getElementById("startbutton").addEventListener("click", getTimeStamp);
+        document.getElementById('finishbutton').addEventListener("click", function() {
+          $('#trashbutton-'+(tasknum-1)).parent().parent().parent().remove();
+          tasknum--;
+        });
 
 
         for (var i = 0; i <= tasknum; i++) {
@@ -104,9 +108,9 @@ window.onload = function() {
                 console.log("element was clicked");
                 //currtasks.splice(2, 1); //removes that element from currtask array
                 //currtasks[i].removed = true; //WHY DOESN'T THIS WORK
-                
+
                 $(this).parent().parent().parent().remove(); //removes that taskdiv from html.
-                
+
                 console.log(currtasks[i]);
                 //tasknum--;
                 headingCheck();
@@ -116,6 +120,6 @@ window.onload = function() {
 
     });
 
-        
+
 
 }
