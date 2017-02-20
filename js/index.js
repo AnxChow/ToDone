@@ -24,7 +24,7 @@ function headingCheck() {
 }
 
 window.onload = function() {
-
+    headingCheck();
     $('#duration').durationPicker(); //durationpicker for expected time required
     $('#tags').selectize({ // selectize for tags
     delimiter: ',',
