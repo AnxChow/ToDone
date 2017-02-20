@@ -34,7 +34,7 @@ h1#titleh1{
   /*vertical-align: middle;*/
 }
 
-#startbutton {
+.startbutton {
   margin-right: 1em;
   margin-left: 1em;
 }
@@ -43,13 +43,16 @@ h1#titleh1{
   background-color: #eedd82; 
 }
 
-#finishbutton {
+
+/*#finishbutton {
   background-color: #7CFC00;
-}
+}*/
+
 /*
 #getitdone{
   clear:both;
 }*/
+
 /*#trashbutton, #startbutton {
   float: right;
   text-align: right;
@@ -60,7 +63,9 @@ h1#titleh1{
 }
 
 .navbar-inverse{ /*the navbar */
-  background-color: #6D7993;
+
+  background-color: #004E64;
+
   /*margin:0px;*/
   border:0px;
 }
@@ -69,3 +74,8 @@ h1#titleh1{
   background-color: white;
   color:grey;
 }
+
+#completed {
+  padding-left: 32px;
+}
+
