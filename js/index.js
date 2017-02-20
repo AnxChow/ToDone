@@ -24,7 +24,7 @@ function headingCheck() {
 }
 
 window.onload = function() {
-    headingCheck();
+    
     $('#duration').durationPicker(); //durationpicker for expected time required
     $('#tags').selectize({ // selectize for tags
     delimiter: ',',
@@ -104,6 +104,7 @@ window.onload = function() {
         divi.innerHTML+=str;
         var taskbody=document.getElementById('taskbody');
         taskbody.appendChild(divi);
+        headingCheck();
         tasknum++;
         document.getElementById('addtaskform').reset(); // resets fields
 
