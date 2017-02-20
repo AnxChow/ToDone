@@ -15,6 +15,12 @@ function headingCheck() {
     } else if (startedtasks.length == 0 && !$("#inprogress").hasClass("hidden")) {
         $("#inprogress").addClass("hidden");
     }
+
+    if ($('#taskbody').children().length == 0 ){
+        if (!$("#notstarted").hasClass("hidden")) {
+            $("#notstarted").addClass("hidden");
+        }
+    }
 }
 
 window.onload = function() {
@@ -95,6 +101,7 @@ window.onload = function() {
         $('#finishbutton').click(function(){
             //var nukeitem = divholder.children()[0].children[3].children[1].id;
             divholder.remove();
+            headingCheck();
         })
 
         for (var i = 0; i <= tasknum; i++) {
@@ -115,6 +122,7 @@ window.onload = function() {
                 getTimeStamp();
                 divholder = $(this).parent().parent().parent();
                 console.log(divholder);
+                headingCheck();
             });
         }
 
