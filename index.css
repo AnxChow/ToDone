@@ -39,7 +39,35 @@ h1#titleh1{
   margin-left: 1em;
 }
 
+#pausebutton {
+  background-color: #eedd82; 
+}
+
+#finishbutton {
+  background-color: #7CFC00;
+}
+/*
+#getitdone{
+  clear:both;
+}*/
+
+
 /*#trashbutton, #startbutton {
   float: right;
   text-align: right;
 }*/
+
+#timer{
+  text-align: right;
+}
+
+.navbar-inverse{ /*the navbar */
+  background-color: #6D7993;
+  /*margin:0px;*/
+  border:0px;
+}
+
+.selected{
+  background-color: white;
+  color:grey;
+}

@@ -30,14 +30,36 @@ window.onload = function() {
         }
     });
 
+    function getTimeStamp() {
+       var now = new Date();
+       var hold='Time Started: '+(now.getHours() + ':'+ ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now.getSeconds()) : (now.getSeconds())));
+       document.getElementById('timer').innerHTML = hold;
+     }
 
     $('#addbutton').click(function(e){
     // $("#addtaskform").on('submit', function() {
+        //Validate form
+        var TaskVal=document.forms["addtaskform"]["tasklabel"].value;
+        var TimeVal=[document.getElementById("bdp-days").innerText,document.getElementById("bdp-hours").innerText,document.getElementById("bdp-minutes").innerText];
+        var TagVal=document.forms["addtaskform"]["tags"].value;
+        if(TaskVal==""){
+          alert("Please enter a task");
+          return false;
+        }
+        if(TagVal==""){
+          alert("Please enter at least one tag");
+          return false;
+        }
+        if(TimeVal[0]=="0" && TimeVal[1]=="0" && TimeVal[2]=="0"){
+          alert("Please set expected time");
+          return false;
+        }
+
         var task = {
-            name: $("#tasklabel").val(),
-            notes: $("#notes-text").val(),
-            time: [document.getElementById("bdp-days").innerText,document.getElementById("bdp-hours").innerText,document.getElementById("bdp-minutes").innerText],
-            tags: $("#tags").val(),
+            "name": $("#tasklabel").val(),
+            "notes": $("#notes-text").val(),
+            "time": TimeVal,
+            "tags": $("#tags").val(),
             complete: false,
             removed: false
         }
@@ -60,7 +82,7 @@ window.onload = function() {
         // }
         //var str=currtasks[tasknum].name + 'Expected Time: ' + currtasks[tasknum].time + 'Tag: ' +currtasks[tasknum].tags;
         // var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button class="btn-block">Start Task</div></div>';
-        var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton-'+tasknum+'" class="startbutton btn btn-primary">Start</button><button id="trashbutton-'+tasknum+'" class="trashbutton btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>'
+        var str='<div class="row"><div class="col-md-6"><h3>'+currtasks[tasknum].name+'</h3></div><div class="col-md-2"><h5>Expected Time: ' +days+' day(s) '+hours+' hour(s) '+mins+' minute(s)</h5></div><div class="col-md-2"><h5>Tag: '+currtasks[tasknum].tags+'</h5></div><div class="col-md-2"><button id="startbutton" class="startbutton btn btn-primary" data-toggle="modal" data-target="#focusModal">Start</button><button id="trashbutton-'+tasknum+'" class="trashbutton btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div></div>'
         //var node=document.createTextNode(str);
         //divi.appendChild(node);
         divi.innerHTML+=str;
