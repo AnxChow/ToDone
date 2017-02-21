@@ -4,6 +4,7 @@ var completedtasks = [];
 var tasknum=0;
 var divholder
 
+
 function headingCheck() {
     if (currtasks.length !== 0 && $("#notstarted").hasClass("hidden")) {
         $("#notstarted").removeClass("hidden");
@@ -24,7 +25,7 @@ function headingCheck() {
 }
 
 window.onload = function() {
-    
+    sessionStorage.setItem("count",0);
     $('#duration').durationPicker(); //durationpicker for expected time required
     $('#tags').selectize({ // selectize for tags
     delimiter: ',',
@@ -43,7 +44,15 @@ window.onload = function() {
        document.getElementById('timer').innerHTML = hold;
      }
 
-
+     $('#finishbutton').click(function(e){
+         //var nukeitem = divholder.children()[0].children[3].children[1].id;
+         var x= parseInt(sessionStorage.getItem("count"));
+         x++;
+         sessionStorage.setItem("count", x);
+         sessionStorage.setItem("div", divholder.innerHTML);
+         divholder.remove();
+         headingCheck();
+     });
 
     $('#addbutton').click(function(e){
     // $("#addtaskform").on('submit', function() {
@@ -109,12 +118,8 @@ window.onload = function() {
         document.getElementById('addtaskform').reset(); // resets fields
 
 
-        
-        $('#finishbutton').click(function(){
-            //var nukeitem = divholder.children()[0].children[3].children[1].id;
-            divholder.remove();
-            headingCheck();
-        })
+
+
 
         for (var i = 0; i <= tasknum; i++) {
         console.log(tasknum, i);
